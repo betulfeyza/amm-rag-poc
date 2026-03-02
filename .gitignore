@@ -34,3 +34,11 @@ Thumbs.db
 
 # Secrets
 .env
+
+# Report files
+*.docx
+*.doc
+*.pptx
+*.xlsx
+*.xls
+~$*
