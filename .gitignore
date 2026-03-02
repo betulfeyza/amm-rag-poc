@@ -1,0 +1,36 @@
+# Generated data & indexes (re-created by `python -m src.cli ingest`)
+data/
+
+# Proprietary PDF source documents
+AMM_Sample/*.PDF
+AMM_Sample/*.pdf
+
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+.pytest_cache/
+.mypy_cache/
+*.egg-info/
+dist/
+build/
+.eggs/
+
+# Virtual environments
+.venv/
+venv/
+env/
+
+# HuggingFace model cache (downloaded automatically on first run)
+.cache/
+
+# IDE
+.vscode/settings.json
+.idea/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Secrets
+.env
