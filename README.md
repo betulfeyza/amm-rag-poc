@@ -114,10 +114,59 @@ python -m src.cli ask --q "o-ring replacement" --topk 5
 │   ├── test_cli.py
 │   ├── test_grounding.py      # Abstain logic unit test
 │   └── test_retrieval.py      # Xref expansion unit test
+├── scripts/
+│   └── auto_chunk.py          # Standalone auto-chunking & Excel export script
+├── sample pages/              # Reference PNG screenshots of processed AMM pages
 ├── AMM_Sample/                # ⚠ PDF files — not included in repo (proprietary)
 ├── data/                      # ⚠ Generated at ingest time — not included in repo
 └── requirements.txt
 ```
+
+---
+
+## Automatic Chunking Script (`scripts/auto_chunk.py`)
+
+A standalone utility that processes selected AMM PDF pages, detects text block
+structure automatically, and exports the results to a formatted Excel workbook
+(`Otomatik_Parcalama.xlsx`).
+
+### What it does
+
+| Step | Tool | Output |
+|------|------|--------|
+| Text block extraction | PyMuPDF (`fitz`) | Per-block text, font size, Y-coordinate |
+| Block classification | Heuristic rules | Başlık / Gövde / Tablo / Header-Footer |
+| Special marker detection | Regex | ⚠ WARNING, 📝 NOTE, 🔧 TASK/SUBTASK |
+| Table extraction | Camelot (lattice → stream) | Structured table data |
+| Excel export | pandas + openpyxl | Color-coded, multi-sheet workbook |
+
+### Processed pages
+
+| PDF | Page (1-based) | Footer label |
+|-----|----------------|--------------|
+| `06___086.PDF` | 9 | Page 201 |
+| `20___086.PDF` | 50 | Page 202 |
+| `20___086.PDF` | 59 | Page 211 |
+
+### Usage
+
+```bash
+# Place AMM PDFs in data/raw/amm/ then run:
+python scripts/auto_chunk.py
+```
+
+Output file is written to the project root as `Otomatik_Parcalama.xlsx`
+(excluded from version control via `.gitignore`).
+
+### Color coding in Excel
+
+| Color | Meaning |
+|-------|---------|
+| 🟡 Gold | WARNING block |
+| 🔵 Light Blue | NOTE block |
+| 🟢 Light Green | TASK / SUBTASK block |
+| 🟠 Salmon | Section Heading |
+| 🔷 Blue (header row) | Column header |
 
 ---
 

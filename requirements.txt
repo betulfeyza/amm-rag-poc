@@ -9,3 +9,7 @@ pdfplumber>=0.11.0
 camelot-py>=0.11.0
 pydantic>=2.7.0
 pytest>=8.0.0
+
+# Auto-chunking script dependencies
+pandas>=2.0.0
+openpyxl>=3.1.0
