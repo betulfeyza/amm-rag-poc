@@ -1,0 +1,5 @@
+﻿Output format when no sufficient evidence:
+- Sonuc: AMM icinde dogrulanamadi.
+- Eksik kaynak alani: ilgili task/step bulunamadi.
+- Kontrol edilen kaynaklar: [doc/page]
+Do not guess.
